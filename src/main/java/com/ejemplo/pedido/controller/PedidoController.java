@@ -5,6 +5,8 @@ import com.ejemplo.pedido.model.Pedido;
 import com.ejemplo.pedido.model.Producto;
 import com.ejemplo.pedido.repository.PedidoRepository;
 import com.ejemplo.pedido.repository.ProductoRepository;
+import com.fasterxml.jackson.core.type.TypeReference;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -15,8 +17,10 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import com.ejemplo.pedido.service.PedidoActualService;
 
+import java.io.IOException;
 import java.math.BigDecimal;
 import java.util.List;
+import java.util.Map;
 import java.util.Optional;
 
 @Controller
@@ -105,11 +109,37 @@ public class PedidoController {
         return "redirect:/productos";
     }
 
-    @PostMapping("/pedido/agregar")
-    public String agregarAlPedido(@RequestParam Long productoId, @RequestParam int cantidad) {
-        Optional<Producto> productoOpt = productoRepository.findById(productoId);
-        productoOpt.ifPresent(producto -> pedidoActualService.agregarProducto(producto, cantidad));
-        return "redirect:/"; // redirige a index con la previsualización actualizada
-    }
+    @PostMapping("/generar-pedido")
+    public String generarPedido(@RequestParam("pedidoJson") String pedidoJson) {
+        try {
+            ObjectMapper mapper = new ObjectMapper();
+            List<Map<String, Object>> productos = mapper.readValue(pedidoJson, new TypeReference<>() {});
 
+            for (Map<String, Object> item : productos) {
+                String nombreProducto = (String) item.get("nombre");
+                int cantidad = ((Number) item.get("cantidad")).intValue(); // ✅ más seguro
+                double precio = ((Number) item.get("precio")).doubleValue(); // ✅ más seguro
+                String cliente = (String) item.get("cliente");
+
+                Producto producto = productoRepository.findAll().stream()
+                        .filter(p -> p.getNombre().equals(nombreProducto))
+                        .findFirst()
+                        .orElse(null);
+
+                if (producto != null && cantidad > 0) {
+                    BigDecimal total = BigDecimal.valueOf(precio).multiply(BigDecimal.valueOf(cantidad));
+                    Pedido pedido = new Pedido(cliente, producto.getNombre());
+                    pedido.setCantidad(cantidad);
+                    pedido.setTotal(total);
+                    pedidoRepository.save(pedido);
+                }
+            }
+
+            return "redirect:/historial";
+
+        } catch (Exception e) {
+            e.printStackTrace(); // ✔️ muestra el error exacto en la consola
+            return "error"; // Asegúrate de tener una vista llamada error.html
+        }
+    }
 }

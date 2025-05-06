@@ -8,44 +8,65 @@
     <link rel="stylesheet" th:href="@{/css/estilos.css}">
 </head>
 <body>
-    <div class="container">
-        <nav class="nav-container">
-            <ul class="nav-menu">
-                <li class="nav-item">
-                    <a href="/productos" class="nav-link">
-                        <i class="material-icons-round">post_add</i>
-                        <span class="nav-text">Agregar Producto</span>
-                    </a><br>
-                </li>
-                <li class="nav-item">
-                    <a href="/historial" class="nav-link">
-                        <i class="material-icons-round">receipt_long</i>
-                        <span class="nav-text">Historial de Ventas</span>
-                    </a><br>
-                </li>
+<div class="container">
+    <nav class="nav-container">
+        <ul class="nav-menu">
+            <li class="nav-item">
+                <a href="/productos" class="nav-link">
+                    <i class="material-icons-round">post_add</i>
+                    <span class="nav-text">Agregar Producto</span>
+                </a><br>
+            </li>
+            <li class="nav-item">
+                <a href="/historial" class="nav-link">
+                    <i class="material-icons-round">receipt_long</i>
+                    <span class="nav-text">Historial de Ventas</span>
+                </a><br>
+            </li>
+        </ul>
+    </nav>
+
+    <div class="content-wrapper">
+        <div class="form-container">
+            <form action="/agregar" method="post" autocomplete="off">
+                <label>Cliente:</label><br>
+                <input type="text" name="cliente" id="cliente-input" required><br><br>
+
+                <label>Producto:</label><br>
+                <select name="producto" required>
+                    <option value="">--  Selecciona un producto  --</option>
+                    <option
+                            th:each="prod : ${productos}"
+                            th:value="${prod.nombre}"
+                            th:data-precio="${prod.precio}"
+                            th:text="${prod.nombre}">
+                    </option>
+                </select><br><br>
+
+                <label>Cantidad:</label><br>
+                <input type="number" name="cantidad" min="1" required /><br><br><br><br><br>
+
+                <button type="button" id="agregar-btn">Registrar Pedido</button><br>
+            </form>
+
+        </div>
+
+        <div class="cart-container">
+            <h2>Carrito</h2>
+            <ul class="cart-items" id="cart-items">
+                <!-- Productos agregados se mostrarán aquí -->
             </ul>
-        </nav>
-        <form action="/agregar" method="post" autocomplete="off">
-
-            <label>Cliente:</label><br>
-            <input type="text" name="cliente" required><br><br>
-
-            <label>Producto:</label><br>
-            <select name="producto" required>
-                <option value="">--  Selecciona un producto  --</option>
-                <option th:each="prod : ${productos}" th:value="${prod.nombre}" th:text="${prod.nombre}"></option>
-            </select><br><br>
-
-            <label>Cantidad:</label><br>
-            <input type="number" name="cantidad" min="1" required /><br><br>
-
-            <button type="submit">Registrar Pedido</button><br>
-        </form>
-        <button id="Agregar-btn" type="button">Agregar Productos</button><br>
-        <button id="Historial-btn" type="button">Ver Historial de Pedidos</button><br>
-
-
+            <div class="carrito">
+                <p id="total">Total: $0.00</p>
+            </div>
+            <form id="pedidoForm" action="/generar-pedido" method="post">
+                <input type="hidden" name="pedidoJson" id="pedidoJson">
+                <button type="submit">Generar Pedido</button>
+            </form>
+        </div>
     </div>
-    <script th:src="@{/js/script.js}"></script>
+</div>
+
+<script th:src="@{/js/script.js}"></script>
 </body>
 </html>
