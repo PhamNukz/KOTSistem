@@ -1,0 +1,51 @@
+<html>
+<head>
+<title>productos.html</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<style type="text/css">
+.s0 { color: #d5b778;}
+.s1 { color: #bcbec4;}
+.s2 { color: #bababa;}
+.s3 { color: #6aab73;}
+</style>
+</head>
+<body bgcolor="#1e1f22">
+<table CELLSPACING=0 CELLPADDING=5 COLS=1 WIDTH="100%" BGCOLOR="#606060" >
+<tr><td><center>
+<font face="Arial, Helvetica" color="#000000">
+productos.html</font>
+</center></td></tr></table>
+<pre><span class="s0">&lt;!DOCTYPE </span><span class="s2">html</span><span class="s0">&gt;</span>
+<span class="s0">&lt;html </span><span class="s2">xmlns:th</span><span class="s3">=&quot;http://www.thymeleaf.org&quot;</span><span class="s0">&gt;</span>
+<span class="s0">&lt;head&gt;</span>
+    <span class="s0">&lt;meta </span><span class="s2">charset</span><span class="s3">=&quot;UTF-8&quot;</span><span class="s0">&gt;</span>
+    <span class="s0">&lt;title&gt;</span><span class="s1">Productos</span><span class="s0">&lt;/title&gt;</span>
+<span class="s0">&lt;/head&gt;</span>
+<span class="s0">&lt;body&gt;</span>
+<span class="s0">&lt;h1&gt;</span><span class="s1">Lista de Productos</span><span class="s0">&lt;/h1&gt;</span>
+
+<span class="s0">&lt;form </span><span class="s2">method</span><span class="s3">=&quot;post&quot; </span><span class="s2">th:action</span><span class="s3">=&quot;@{/productos/agregar}&quot;</span><span class="s0">&gt;</span>
+    <span class="s0">&lt;input </span><span class="s2">type</span><span class="s3">=&quot;text&quot; </span><span class="s2">name</span><span class="s3">=&quot;nombre&quot; </span><span class="s2">placeholder</span><span class="s3">=&quot;Nombre del producto&quot; </span><span class="s2">required</span><span class="s0">&gt;</span>
+    <span class="s0">&lt;input </span><span class="s2">type</span><span class="s3">=&quot;number&quot; </span><span class="s2">name</span><span class="s3">=&quot;precio&quot; </span><span class="s2">step</span><span class="s3">=&quot;0.01&quot; </span><span class="s2">placeholder</span><span class="s3">=&quot;Precio&quot; </span><span class="s2">required</span><span class="s0">&gt;</span>
+    <span class="s0">&lt;button </span><span class="s2">type</span><span class="s3">=&quot;submit&quot;</span><span class="s0">&gt;</span><span class="s1">Agregar</span><span class="s0">&lt;/button&gt;</span>
+<span class="s0">&lt;/form&gt;</span>
+
+<span class="s0">&lt;table </span><span class="s2">border</span><span class="s3">=&quot;1&quot;</span><span class="s0">&gt;</span>
+    <span class="s0">&lt;tr&gt;&lt;th&gt;</span><span class="s1">Producto</span><span class="s0">&lt;/th&gt;&lt;th&gt;</span><span class="s1">Precio</span><span class="s0">&lt;/th&gt;&lt;th&gt;</span><span class="s1">Acción</span><span class="s0">&lt;/th&gt;&lt;/tr&gt;</span>
+    <span class="s0">&lt;tr </span><span class="s2">th:each</span><span class="s3">=&quot;prod : ${productos}&quot;</span><span class="s0">&gt;</span>
+        <span class="s0">&lt;td </span><span class="s2">th:text</span><span class="s3">=&quot;${prod.nombre}&quot;</span><span class="s0">&gt;&lt;/td&gt;</span>
+        <span class="s0">&lt;td </span><span class="s2">th:text</span><span class="s3">=&quot;${prod.precio}&quot;</span><span class="s0">&gt;&lt;/td&gt;</span>
+        <span class="s0">&lt;td&gt;</span>
+            <span class="s0">&lt;form </span><span class="s2">th:action</span><span class="s3">=&quot;@{'/eliminar/' + ${prod.id}}&quot; </span><span class="s2">method</span><span class="s3">=&quot;get&quot;</span><span class="s0">&gt;</span>
+                <span class="s0">&lt;button </span><span class="s2">type</span><span class="s3">=&quot;submit&quot;</span><span class="s0">&gt;</span><span class="s1">Eliminar</span><span class="s0">&lt;/button&gt;</span>
+            <span class="s0">&lt;/form&gt;</span>
+        <span class="s0">&lt;/td&gt;</span>
+    <span class="s0">&lt;/tr&gt;</span>
+<span class="s0">&lt;/table&gt;</span>
+
+<span class="s0">&lt;br&gt;&lt;a </span><span class="s2">href</span><span class="s3">=&quot;/&quot;</span><span class="s0">&gt;</span><span class="s1">Volver</span><span class="s0">&lt;/a&gt;</span>
+<span class="s0">&lt;/body&gt;</span>
+<span class="s0">&lt;/html&gt;</span>
+</pre>
+</body>
+</html>

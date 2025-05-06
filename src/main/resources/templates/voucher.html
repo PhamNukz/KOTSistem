@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Voucher</title>
+</head>
+<body>
+    <h1>Pedido Confirmado</h1>
+    <p><strong>Número de Pedido:</strong> <span th:text="${pedido.id}"></span></p>
+    <p><strong>Cliente:</strong> <span th:text="${pedido.cliente}"></span></p>
+    <p><strong>Producto:</strong> <span th:text="${pedido.producto}"></span></p>
+    <p><strong>Fecha:</strong> <span th:text="${pedido.fecha}"></span></p>
+    <p><strong>Cantidad:</strong> <span th:text="${pedido.cantidad}"></span></p>
+    <p><strong>Total:</strong> <span th:text="${pedido.total}"></span></p>
+    <a href="/">Registrar otro</a>
+</body>
+</html>

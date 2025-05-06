@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Historial</title>
+</head>
+<body>
+    <h1>Historial de Pedidos</h1>
+    <table border="1">
+        <tr>
+            <th>ID</th>
+            <th>Cliente</th>
+            <th>Producto</th>
+            <th>Cantidad</th>
+            <th>Total</th>
+            <th>Fecha</th>
+        </tr>
+        <tr th:each="p : ${pedidos}">
+            <td th:text="${p.id}"></td>
+            <td th:text="${p.cliente}"></td>
+            <td th:text="${p.producto}"></td>
+            <td th:text="${p.cantidad}"></td>
+            <td th:text="${p.total}"></td>
+            <td th:text="${p.fecha}"></td>
+        </tr>
+    </table>
+    <br><a href="/">Volver</a>
+</body>
+</html>

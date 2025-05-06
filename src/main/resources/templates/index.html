@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>KOT</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="http://fonts.googleapis.com/icon?family=Material+Icons+Round" rel="stylesheet">
+    <link rel="stylesheet" th:href="@{/css/estilos.css}">
+</head>
+<body>
+    <div class="container">
+        <nav class="nav-container">
+            <ul class="nav-menu">
+                <li class="nav-item">
+                    <a href="/productos" class="nav-link">
+                        <i class="material-icons-round">post_add</i>
+                        <span class="nav-text">Agregar Producto</span>
+                    </a><br>
+                </li>
+                <li class="nav-item">
+                    <a href="/historial" class="nav-link">
+                        <i class="material-icons-round">receipt_long</i>
+                        <span class="nav-text">Historial de Ventas</span>
+                    </a><br>
+                </li>
+            </ul>
+        </nav>
+        <form action="/agregar" method="post" autocomplete="off">
+
+            <label>Cliente:</label><br>
+            <input type="text" name="cliente" required><br><br>
+
+            <label>Producto:</label><br>
+            <select name="producto" required>
+                <option value="">--  Selecciona un producto  --</option>
+                <option th:each="prod : ${productos}" th:value="${prod.nombre}" th:text="${prod.nombre}"></option>
+            </select><br><br>
+
+            <label>Cantidad:</label><br>
+            <input type="number" name="cantidad" min="1" required /><br><br>
+
+            <button type="submit">Registrar Pedido</button><br>
+        </form>
+        <button id="Agregar-btn" type="button">Agregar Productos</button><br>
+        <button id="Historial-btn" type="button">Ver Historial de Pedidos</button><br>
+
+
+    </div>
+    <script th:src="@{/js/script.js}"></script>
+</body>
+</html>
