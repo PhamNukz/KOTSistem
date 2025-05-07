@@ -3,10 +3,16 @@
 <head>
     <meta charset="UTF-8">
     <title>Historial</title>
+    <link rel="stylesheet" th:href="@{/css/estilos.css}" />
 </head>
 <body>
-    <h1>Historial de Pedidos</h1>
-    <table border="1">
+<div class="container">
+    <h1 style="text-align: center; background: linear-gradient(to right, #5D0516, #F77051); color: white; padding: 20px; border-radius: 12px 12px 0 0;">
+        Historial de Pedidos
+    </h1>
+
+    <table class="styled-table">
+        <thead>
         <tr>
             <th>ID</th>
             <th>Cliente</th>
@@ -15,6 +21,8 @@
             <th>Total</th>
             <th>Fecha</th>
         </tr>
+        </thead>
+        <tbody>
         <tr th:each="p : ${pedidos}">
             <td th:text="${p.id}"></td>
             <td th:text="${p.cliente}"></td>
@@ -23,7 +31,12 @@
             <td th:text="${p.total}"></td>
             <td th:text="${p.fecha}"></td>
         </tr>
+        </tbody>
     </table>
-    <br><a href="/">Volver</a>
+
+    <button style="background: linear-gradient(to right, #5D0516, #F77051);">Generar Arqueo</button>
+    <br><br>
+    <a href="/" style="text-decoration: none; color: #5D0516; font-weight: bold;">Volver</a>
+</div>
 </body>
 </html>
