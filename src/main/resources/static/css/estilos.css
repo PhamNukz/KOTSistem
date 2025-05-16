@@ -1,83 +1,78 @@
 :root {
-    --primary: #000000;
-    --secondary: #000000;
-    --accent: #1318a8;
-    --surface: rgba(255, 255, 255, 0.95);
+    --primary: #ffffff;
+    --secondary: #a0aec0;
+    --accent: #00ffb3;
+    --bg-dark: #1e1f25;
+    --surface: rgba(255, 255, 255, 0.05);
+    --glass: rgba(255, 255, 255, 0.05);
+    --highlight: #2dd4bf;
 }
 
 body {
-    font-family: sans-serif;
+    font-family: 'Segoe UI', sans-serif;
     margin: 0;
     padding: 0;
-    background: #b9b9b9;
-    color: #000000; /* Texto principal oscuro */
+    background: linear-gradient(135deg, #111827, #1e293b);
+    color: var(--primary);
     line-height: 1.6;
 }
 
 .container {
     max-width: 960px;
     margin: 40px auto;
-    border-radius: 16px;
-    border: none;
     padding: 20px;
-    background-color: #ffffff; /* Fondo blanco del contenido */
-    box-shadow: 4px 12px 4px rgba(0, 0, 0, 0.1);
-}
-
-
-input {
-    width: 260px;
-    padding: 15px 40px 13px 20px;
-    background: #eee;
-    border-radius: 8px;
-    border: none;
-    outline: none;
-    font-size: 16px;
-    color: #333;
-    font-weight: 500;
-    .input-nom {
-        width: 200px;
-        height: 48px;
-    }
-
-    .input-prec {
-        width: 200px;
-        height: 48px;
-    }
+    background: var(--glass);
+    border-radius: 20px;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.25);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
 }
 
 select {
-    width: 320px;
-    padding: 13px 13px 20px;
-    background: #eee;
-    border-radius: 8px;
-    border: none;
-    font-size: 16px;
-    color: #333;
+    width: 100%;
+    padding: 12px 20px;
+    background: var(--surface);
+    border-radius: 10px;
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    color: var(--primary);
     font-weight: 500;
+    font-size: 15px;
+    outline: none;
 }
-option {
-    padding: 13px 13px 20px;
-    background: #eee;
-    border-radius: 8px;
-    border: none;
-    font-size: 16px;
-    color: #333;
+
+input{
+    width: 100%;
+    padding: 12px 0px;
+    background: var(--surface);
+    border-radius: 10px;
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    color: var(--primary);
     font-weight: 500;
+    font-size: 15px;
+    outline: none;
+}
+
+option {
+    background: #1f2937;
+    color: var(--primary);
 }
 
 button {
-    width: 320px;
-    height: 48px;
-    margin: 13px auto;
-    background: #7494ec;
-    border-radius: 8px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, .1);
+    width: 100%;
+    padding: 14px;
     border: none;
-    cursor: pointer;
-    font-size: 16px;
-    color: #fff;
+    border-radius: 12px;
+    background: linear-gradient(135deg, #2dd4bf, #14b8a6);
+    color: white;
     font-weight: 600;
+    font-size: 16px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+button:hover {
+    background: linear-gradient(135deg, #14b8a6, #0d9488);
 }
 
 .nav-container {
@@ -85,15 +80,12 @@ button {
     padding: 1.25rem 2rem;
     border-radius: 1.5rem;
     backdrop-filter: blur(16px);
-    border: 1px rgba(255, 255, 255, 0.2);
-    background-color: #7494ec;
+    border: 1px solid rgba(255, 255, 255, 0.2);
 }
-
-
 
 .nav-menu {
     display: flex;
-    justify-content: center; /* centra horizontalmente */
+    justify-content: center;
     gap: 9.5rem;
     list-style: none;
 }
@@ -102,7 +94,7 @@ button {
     position: relative;
     display: flex;
     cursor: pointer;
-    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    transition: all 0.3s ease;
 }
 
 .nav-link {
@@ -111,7 +103,6 @@ button {
     align-items: center;
     text-decoration: none;
     color: var(--secondary);
-    transition: color 0.3s ease;
 }
 
 .nav-icon {
@@ -140,28 +131,22 @@ button {
     transform: translateY(0);
 }
 
-.material-icons-round {
-    font-size: 2.5rem; /* o prueba con 48px */
-    margin-top: 20px;
-}
-
 .content-wrapper {
     display: flex;
     justify-content: space-between;
     align-items: flex-start;
     gap: 40px;
+    flex-wrap: wrap;
 }
 
-.form-container {
+.form-container, .cart-container {
+    margin: 25px;
     flex: 1;
-}
-
-.cart-container {
-    flex: 1;
-    background-color: #f4f4f4;
-    padding: 20px;
-    border-radius: 12px;
-    box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    background: var(--glass);
+    padding: 24px;
+    border-radius: 16px;
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
+    border: 1px solid rgba(255, 255, 255, 0.08);
 }
 
 .cart-container h2 {
@@ -176,72 +161,64 @@ button {
 .cart-items li {
     margin-bottom: 10px;
     padding: 10px;
-    background-color: #fff;
+    background: rgba(255, 255, 255, 0.07);
     border-radius: 8px;
-    box-shadow: 0 0 5px rgba(0,0,0,0.05);
+    box-shadow: 0 0 5px rgba(0,0,0,0.1);
+    color: var(--primary);
 }
 
 .styled-table {
     width: 100%;
     border-collapse: collapse;
-    margin: 20px 0;
-    font-size: 16px;
+    font-size: 15px;
     border-radius: 12px;
     overflow: hidden;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-    background-color: #ffffff;
+    box-shadow: 0 0 12px rgba(0, 0, 0, 0.2);
+    background-color: var(--glass);
+    color: var(--primary);
 }
 
 .styled-table thead tr {
-    background: linear-gradient(to right, #5D0516, #F77051);
+    background: linear-gradient(to right, #1d4ed8, #3b82f6);
     color: #ffffff;
-    text-align: left;
     font-weight: bold;
 }
 
 .styled-table th,
 .styled-table td {
-    padding: 12px 15px;
-}
-
-.styled-table tbody tr {
-    border-bottom: 1px solid #dddddd;
+    padding: 12px 16px;
+    text-align: left;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.08);
 }
 
 .styled-table tbody tr:nth-of-type(even) {
-    background-color: #f9f9f9;
+    background-color: rgba(255, 255, 255, 0.03);
 }
 
 .styled-table tbody tr:last-of-type {
-    border-bottom: 2px solid #F77051;
+    border-bottom: 2px solid #3b82f6;
 }
 
 .product-form {
     display: flex;
     flex-direction: column;
     gap: 12px;
-    margin-bottom: 20px;
+    width: 100%;
 }
 
 .delete-button {
-    background-color: #5D0516;
+    background-color: #dc2626;
     color: #fff;
     border: none;
     padding: 10px 14px;
-    border-radius: 6px;
+    border-radius: 10px;
     cursor: pointer;
     font-weight: 600;
     transition: background 0.3s ease;
 }
 
 .delete-button:hover {
-    background-color: #a10f2e;
-}
-
-.product-form input,
-.product-form button {
-    width: 100%;
-    max-width: 400px;
+    background-color: #b91c1c;
 }
 
 .layout-row {
@@ -252,45 +229,10 @@ button {
     flex-wrap: wrap;
 }
 
-.product-form {
-    display: flex;
-    flex-direction: column;
-    gap: 12px;
-    width: 300px;
-}
-
-.styled-table {
-    width: 100%;
-    max-width: 600px;
-    border-collapse: collapse;
-    background-color: #fff;
-    border-radius: 8px;
-    box-shadow: 0 0 10px rgba(0,0,0,0.05);
-    overflow: hidden;
-}
-
-.styled-table th, .styled-table td {
-    padding: 12px 16px;
-    text-align: left;
-    border-bottom: 1px solid #ddd;
-}
-
-.styled-table th {
-    background-color: #5D0516;
-    color: white;
-}
-
-.delete-button {
-    background-color: #5D0516;
-    color: #fff;
-    border: none;
-    padding: 8px 12px;
-    border-radius: 6px;
-    cursor: pointer;
-    font-weight: 600;
-    transition: background 0.3s ease;
-}
-
-.delete-button:hover {
-    background-color: #a10f2e;
+.card {
+    background: var(--glass);
+    padding: 24px;
+    border-radius: 16px;
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
+    border: 1px solid rgba(255, 255, 255, 0.08);
 }
