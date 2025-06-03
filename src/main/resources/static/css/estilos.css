@@ -72,7 +72,9 @@ button {
 }
 
 button:hover {
-    background: linear-gradient(135deg, #14b8a6, #0d9488);
+    background: linear-gradient(135deg, #4A0412, #D65C45);
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(93, 5, 22, 0.4);
 }
 
 .nav-container {
@@ -179,7 +181,7 @@ button:hover {
 }
 
 .styled-table thead tr {
-    background: linear-gradient(to right, #1d4ed8, #3b82f6);
+    background: linear-gradient(135deg, #4A0412, #D65C45);
     color: #ffffff;
     font-weight: bold;
 }
@@ -195,9 +197,6 @@ button:hover {
     background-color: rgba(255, 255, 255, 0.03);
 }
 
-.styled-table tbody tr:last-of-type {
-    border-bottom: 2px solid #3b82f6;
-}
 
 .product-form {
     display: flex;
@@ -214,11 +213,13 @@ button:hover {
     border-radius: 10px;
     cursor: pointer;
     font-weight: 600;
-    transition: background 0.3s ease;
+    transition: all 0.3s ease;
 }
 
 .delete-button:hover {
-    background-color: #b91c1c;
+    background-color: #f1eeee;
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(93, 5, 22, 0.4);
 }
 
 .layout-row {
@@ -238,8 +239,7 @@ button:hover {
 }
 
 /* Estilo específico para el botón Generar Arqueo */
-.btn-arqueo {
-    background: linear-gradient(135deg, #5D0516, #F77051);
+.btn-generar-arqueo {
     color: white;
     padding: 14px 20px;
     border: none;
@@ -254,7 +254,7 @@ button:hover {
     box-shadow: 0 4px 15px rgba(93, 5, 22, 0.3);
 }
 
-.btn-arqueo:hover {
+.btn-generar-arqueo:hover {
     background: linear-gradient(135deg, #4A0412, #D65C45);
     transform: translateY(-2px);
     box-shadow: 0 6px 20px rgba(93, 5, 22, 0.4);
@@ -284,4 +284,23 @@ button:hover {
     margin: 0 auto;
     border: 1px solid rgba(255, 255, 255, 0.2);
     box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+}
+
+.input-nom,.input-prec{
+    max-width: 435px;
+    padding: 12px 12px;
+}
+
+.form-section, .tabla-section {
+    flex: 1;
+    min-width: 400px;
+}
+
+.buscarButtonn{
+    margin-top: 20px;
+    margin-bottom: 40px;
+}
+
+.btn-arqueo{
+    margin-bottom: 20px;
 }

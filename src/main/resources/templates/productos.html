@@ -13,32 +13,37 @@
 
     <div class="layout-row">
         <!-- Formulario a la izquierda -->
-        <form method="post" th:action="@{/productos/agregar}" class="product-form">
-            <input type="text" id="input-nom" name="nombre" placeholder="Nombre del producto" required>
-            <input type="number" id="input-prec" name="precio" step="0.01" placeholder="Precio" required>
-            <button type="submit">Agregar</button>
-        </form>
+        <div class="form-section">
+            <form method="post" th:action="@{/productos/agregar}" class="product-form">
+                <input type="text" id="input-nom" class="input-nom" name="nombre" autocomplete="off" placeholder="Nombre del producto" required>
+                <input type="number" id="input-prec" class="input-prec" name="precio" placeholder="Precio" required>
+                <button type="submit" class="agregar-product">Agregar</button>
+            </form>
+        </div>
 
         <!-- Tabla a la derecha -->
-        <table class="styled-table">
-            <thead>
-            <tr><th>Producto</th><th>Precio</th><th>Acción</th></tr>
-            </thead>
-            <tbody>
-            <tr th:each="prod : ${productos}">
-                <td th:text="${prod.nombre}"></td>
-                <td th:text="${prod.precio}"></td>
-                <td>
-                    <form th:action="@{'/eliminar/' + ${prod.id}}" method="get">
-                        <button type="submit" class="delete-button">Eliminar</button>
-                    </form>
-                </td>
-            </tr>
-            </tbody>
-        </table>
+        <div class="tabla-section">
+            <table class="styled-table">
+                <thead>
+                <tr><th>Producto</th><th>Precio</th><th>Acción</th></tr>
+                </thead>
+                <tbody>
+                <tr th:each="prod : ${productos}">
+                    <td th:text="${prod.nombre}"></td>
+                    <td th:text="${prod.precio}"></td>
+                    <td>
+                        <form th:action="@{'/eliminar/' + ${prod.id}}" method="get">
+                            <button type="submit" class="delete-button">Eliminar</button>
+                        </form>
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
     </div>
 
-    <br><a href="/" style="text-decoration: none; color: #5D0516; font-weight: bold;">Volver</a>
+
+    <br><a href="/" style="text-decoration: none; color: #2dd4bf; font-weight: bold;">Volver</a>
 </div>
 </body>
 </html>
