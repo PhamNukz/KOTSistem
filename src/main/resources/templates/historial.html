@@ -2,15 +2,47 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>Historial</title>
-    <link rel="stylesheet" th:href="@{/css/estilos.css}" />
+    <title>Historial de Pedidos</title>
+    <link rel="stylesheet" th:href="@{/css/styles.css}">
+    <style>
+        /* Estilos específicos para el modal de arqueos */
+        .modal-arqueo {
+            display: none;
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background: white;
+            padding: 2rem;
+            border-radius: 8px;
+            box-shadow: 0 0 20px rgba(0,0,0,0.2);
+            z-index: 1000;
+            max-width: 80%;
+            max-height: 80vh;
+            overflow-y: auto;
+        }
+
+        .btn-generar-arqueo {
+            background: linear-gradient(to right, #5D0516, #F77051);
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            margin-top: 20px;
+        }
+    </style>
 </head>
 <body>
 <div class="container">
-    <h1 style="text-align: center; background: linear-gradient(to right, #5D0516, #F77051); color: white; padding: 20px; border-radius: 12px 12px 0 0;">
-        Historial de Pedidos
-    </h1>
+    <h1>Historial de Pedidos</h1>
 
+    <!-- Botón para generar arqueo -->
+    <button class="btn-generar-arqueo" onclick="generarArqueo()">
+        Generar Arqueo
+    </button>
+
+    <!-- Tabla de pedidos -->
     <table class="styled-table">
         <thead>
         <tr>
@@ -23,20 +55,29 @@
         </tr>
         </thead>
         <tbody>
-        <tr th:each="p : ${pedidos}">
-            <td th:text="${p.id}"></td>
-            <td th:text="${p.cliente}"></td>
-            <td th:text="${p.producto}"></td>
-            <td th:text="${p.cantidad}"></td>
-            <td th:text="${p.total}"></td>
-            <td th:text="${p.fecha}"></td>
+        <tr th:each="pedido : ${pedidos}">
+            <td th:text="${pedido.id}"></td>
+            <td th:text="${pedido.cliente}"></td>
+            <td th:text="${pedido.producto}"></td>
+            <td th:text="${pedido.cantidad}"></td>
+            <td th:text="${pedido.total}"></td>
+            <td th:text="${pedido.fecha}"></td>
         </tr>
         </tbody>
     </table>
-
-    <button style="background: linear-gradient(to right, #5D0516, #F77051);">Generar Arqueo</button>
-    <br><br>
-    <a href="/" style="text-decoration: none; color: #5D0516; font-weight: bold;">Volver</a>
 </div>
+
+<!-- Modal para ver pedidos de arqueo -->
+<div id="modalPedidos" class="modal-arqueo">
+    <h2>Pedidos del Arqueo #<span id="arqueoId"></span></h2>
+    <div id="listaPedidos"></div>
+    <button onclick="document.getElementById('modalPedidos').style.display = 'none'"
+            style="margin-top: 20px; padding: 8px 16px;">
+        Cerrar
+    </button>
+</div>
+
+<!-- JavaScript -->
+<script th:src="@{/js/arqueos.js}"></script>
 </body>
 </html>

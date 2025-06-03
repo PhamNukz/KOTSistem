@@ -44,4 +44,19 @@ public class Pedido {
     public void setCliente(String cliente) { this.cliente = cliente; }
     public void setProducto(String producto) { this.producto = producto; }
     public void setFecha(LocalDateTime fecha) { this.fecha = fecha; }
+
+
+    @ManyToOne
+    @JoinColumn(name = "id_arqueo")
+    private Arqueo arqueo;  // Relación ManyToOne
+
+    public Arqueo getArqueo() {
+        return arqueo;
+    }
+
+    public void setArqueo(Arqueo arqueo) {
+        this.arqueo = arqueo;
+    }
+
+
 }

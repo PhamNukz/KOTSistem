@@ -3,6 +3,7 @@ package com.ejemplo.pedido.controller;
 
 import com.ejemplo.pedido.model.Pedido;
 import com.ejemplo.pedido.model.Producto;
+import com.ejemplo.pedido.repository.ArqueoRepository;
 import com.ejemplo.pedido.repository.PedidoRepository;
 import com.ejemplo.pedido.repository.ProductoRepository;
 import com.fasterxml.jackson.core.type.TypeReference;
@@ -34,6 +35,9 @@ public class PedidoController {
 
     @Autowired
     private PedidoActualService pedidoActualService;
+
+    @Autowired
+    private ArqueoRepository arqueoRepository;
 
 
     @GetMapping("/")
@@ -142,4 +146,9 @@ public class PedidoController {
             return "error"; // Asegúrate de tener una vista llamada error.html
         }
     }
+
+
+
+
+
 }

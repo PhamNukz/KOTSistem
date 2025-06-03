@@ -236,3 +236,52 @@ button:hover {
     box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
     border: 1px solid rgba(255, 255, 255, 0.08);
 }
+
+/* Estilo específico para el botón Generar Arqueo */
+.btn-arqueo {
+    background: linear-gradient(135deg, #5D0516, #F77051);
+    color: white;
+    padding: 14px 20px;
+    border: none;
+    border-radius: 12px;
+    font-weight: 600;
+    font-size: 16px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    margin: 20px 0;
+    display: inline-block;
+    width: auto;
+    box-shadow: 0 4px 15px rgba(93, 5, 22, 0.3);
+}
+
+.btn-arqueo:hover {
+    background: linear-gradient(135deg, #4A0412, #D65C45);
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(93, 5, 22, 0.4);
+}
+
+/* Estilo para la tarjeta de arqueos */
+.arqueo-card {
+    background: var(--glass);
+    padding: 20px;
+    border-radius: 12px;
+    margin-bottom: 15px;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    transition: transform 0.3s ease;
+}
+
+.arqueo-card:hover {
+    transform: translateY(-5px);
+    border-color: var(--highlight);
+}
+
+/* Modal de pedidos */
+.modal-pedidos {
+    background: var(--bg-dark);
+    border-radius: 16px;
+    padding: 25px;
+    max-width: 800px;
+    margin: 0 auto;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+}

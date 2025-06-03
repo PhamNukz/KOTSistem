@@ -1,16 +1,15 @@
-document.addEventListener("DOMContentLoaded", function () {
-  document.getElementById("Agregar-btn").addEventListener("click", function () {
-     window.location.href = "/productos";
-  });
-});
 
 document.addEventListener("DOMContentLoaded", function () {
-  document.getElementById("Historial-btn").addEventListener("click", function () {
-     window.location.href = "/historial";
-  });
-});
+    // Eventos de navegación
+    document.getElementById("Agregar-btn")?.addEventListener("click", function () {
+        window.location.href = "/productos";
+    });
 
-document.addEventListener('DOMContentLoaded', () => {
+    document.getElementById("Historial-btn")?.addEventListener("click", function () {
+        window.location.href = "/historial";
+    });
+
+    // Lógica del carrito (tu código actual)
     const btn = document.getElementById('agregar-btn');
     const productoSelect = document.querySelector('select[name="producto"]');
     const cantidadInput = document.querySelector('input[name="cantidad"]');
@@ -18,7 +17,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const totalDisplay = document.getElementById('total');
     let total = 0;
 
-    btn.addEventListener('click', () => {
+    btn?.addEventListener('click', () => {
         const selectedOption = productoSelect.selectedOptions[0];
         const producto = selectedOption.value;
         const precio = parseFloat(selectedOption.dataset.precio);
@@ -33,40 +32,39 @@ document.addEventListener('DOMContentLoaded', () => {
             carrito.appendChild(li);
 
             totalDisplay.textContent = `Total: $${total.toFixed(2)}`;
-
             productoSelect.selectedIndex = 0;
             cantidadInput.value = '';
         } else {
             alert('Selecciona un producto y una cantidad válida.');
         }
     });
-});
 
-const generarForm = document.getElementById('pedidoForm');
-const hiddenInput = document.getElementById('pedidoJson');
+    // Formulario de pedido (tu código actual)
+    const generarForm = document.getElementById('pedidoForm');
+    const hiddenInput = document.getElementById('pedidoJson');
 
-generarForm.addEventListener('submit', (e) => {
-    const productos = [];
-    const items = document.querySelectorAll('#cart-items li');
-    const cliente = document.getElementById('cliente-input').value.trim();
+    generarForm?.addEventListener('submit', (e) => {
+        const productos = [];
+        const items = document.querySelectorAll('#cart-items li');
+        const cliente = document.getElementById('cliente-input').value.trim();
 
-    if (!cliente) {
-        e.preventDefault();
-        alert('Por favor ingresa el nombre del cliente antes de generar el pedido.');
-        return;
-    }
+        if (!cliente) {
+            e.preventDefault();
+            alert('Por favor ingresa el nombre del cliente antes de generar el pedido.');
+            return;
+        }
 
-    items.forEach(item => {
-        const texto = item.textContent;
-        const partes = texto.split(' - ');
-        const nombre = partes[0];
-        const cantidad = parseInt(partes[1].split(': ')[1]);
-        const precio = parseFloat(partes[2].split('$')[1]);
+        items.forEach(item => {
+            const texto = item.textContent;
+            const partes = texto.split(' - ');
+            const nombre = partes[0];
+            const cantidad = parseInt(partes[1].split(': ')[1]);
+            const precio = parseFloat(partes[2].split('$')[1]);
 
-        productos.push({ nombre, cantidad, precio, cliente });
+            productos.push({ nombre, cantidad, precio, cliente });
+        });
+
+        hiddenInput.value = JSON.stringify(productos);
     });
-
-    hiddenInput.value = JSON.stringify(productos);
 });
-
 

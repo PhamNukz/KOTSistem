@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Arqueos</title>
+    <!-- Solo enlace a tu CSS existente -->
+    <link rel="stylesheet" href="/css/estilos.css">
+</head>
+<body>
+<!-- Barra de navegación -->
+<div class="nav-container">
+    <ul class="nav-menu">
+        <li class="nav-item">
+            <a href="/" class="nav-link">
+                <span class="nav-icon">🏠</span>
+                <span class="nav-text">Inicio</span>
+            </a>
+        </li>
+        <li class="nav-item">
+            <a href="/arqueos" class="nav-link">
+                <span class="nav-icon">📊</span>
+                <span class="nav-text">Arqueos</span>
+            </a>
+        </li>
+    </ul>
+</div>
+
+<!-- Contenedor principal -->
+<div class="container">
+    <!-- Encabezado y buscador -->
+    <div class="arqueo-header">
+        <h1>Arqueos</h1>
+        <div class="search-box">
+            <input type="text" id="searchInput" placeholder="Buscar por ID de arqueo...">
+            <button id="searchButton">Buscar</button>
+        </div>
+    </div>
+
+    <!-- Botón de acción principal -->
+    <button id="generarArqueoBtn" class="btn-arqueo">
+        Generar Nuevo Arqueo
+    </button>
+
+    <!-- Lista de arqueos (generada por Thymeleaf) -->
+    <div class="arqueo-list">
+        <div th:each="arqueo : ${arqueos}" class="arqueo-card" th:data-id="${arqueo.id}">
+            <h3>Arqueo #<span th:text="${arqueo.id}"></span></h3>
+            <p>Fecha: <span th:text="${arqueo.fecha}"></span></p>
+            <p>Total: $<span th:text="${#numbers.formatDecimal(arqueo.total, 1, 2)}"></span></p>
+            <button class="btn-arqueo ver-pedidos-btn" style="padding: 8px 12px; width: auto;">
+                Ver Pedidos
+            </button>
+        </div>
+    </div>
+</div>
+
+<!-- Modal para pedidos (oculto inicialmente) -->
+<div id="modalPedidos" class="modal-pedidos" style="display: none;">
+    <h2>Pedidos del Arqueo #<span id="arqueoId"></span></h2>
+    <div class="styled-table-container">
+        <table class="styled-table">
+            <thead>
+            <tr>
+                <th>Cliente</th>
+                <th>Producto</th>
+                <th>Cantidad</th>
+                <th>Total</th>
+            </tr>
+            </thead>
+            <tbody id="listaPedidos">
+            <!-- Contenido dinámico desde JS -->
+            </tbody>
+        </table>
+    </div>
+    <button id="cerrarModalBtn" class="delete-button" style="margin-top: 20px;">
+        Cerrar
+    </button>
+</div>
+
+<!-- JavaScript externo -->
+<script src="/js/arqueos.js"></script>
+</body>
+</html>
